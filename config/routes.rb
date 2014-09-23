@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'calendar/index'
+  root :to => "calendar#index", :via => :get, :as => :calendar
+  resources :tasks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
