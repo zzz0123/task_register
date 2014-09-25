@@ -11,7 +11,6 @@ gem 'simple_form'
 gem 'fullcalendar-rails'
 gem 'sass-rails'
 gem 'haml-rails'
-gem 'turbolinks'
 
 group :assets do
   gem 'coffee-rails'
