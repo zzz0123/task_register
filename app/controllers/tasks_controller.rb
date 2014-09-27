@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.select("id, start, title")
+    @tasks = Task.where(start: Time.at(params[:start].to_i)..Time.at(params[:end].to_i)).select(:id, :start, :title)
     respond_to do |format|
       format.json { render json: @tasks }
     end
@@ -12,6 +12,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @task.start = params[:date] if params[:date]
   end
 
   # GET /tasks/1/edit
@@ -23,7 +24,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to '/', notice: 'Task was successfully created.'
+      redirect_to '/'
     else
       render :new
     end
@@ -32,7 +33,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to '/', notice: 'Task was successfully updated.'
+      redirect_to '/'
     else
       render :edit
     end
@@ -41,7 +42,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to '/', notice: 'Task was successfully destroyed.'
+    redirect_to '/'
   end
 
   private
@@ -55,3 +56,4 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :description, :start, :note)
     end
 end
+

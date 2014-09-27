@@ -7,8 +7,8 @@ $ ->
       today: 'this month'
 
     selectable: true
-    select: ->
-      location.href = '/tasks/new'
+    select: (select)->
+      location.href = '/tasks/new?date=' + select.toISOString()
 
     allDayDefault: false
     events: '/tasks.json'
