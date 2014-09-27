@@ -5,7 +5,6 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.select("id, start, title")
     respond_to do |format|
-      format.html { render :nothing => true }
       format.json { render json: @tasks }
     end
   end
@@ -17,7 +16,6 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @task = Task.find(params[:id])
   end
 
   # POST /tasks
