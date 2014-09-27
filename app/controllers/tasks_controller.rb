@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:edit, :update, :destroy]
 
   # GET /tasks
   def index
@@ -8,10 +8,6 @@ class TasksController < ApplicationController
       format.html { render :nothing => true }
       format.json { render json: @tasks }
     end
-  end
-
-  # GET /tasks/1
-  def show
   end
 
   # GET /tasks/new
